@@ -31,6 +31,7 @@ I've spent sometime sharpening-up the script to be *somewhat* portable but in th
 
 Future goals possibly include using a JSON-fed HTML page, Bluetooth-over-Serial connectivity, and other remote file transfers methods.
 
+NB: [This site is not affiliated with or endorsed by the Meshtastic project](https://meshtastic.org/docs/legal/licensing-and-trademark/#noncommercial-and-community-web-sites)
 
 ## Requirements
 

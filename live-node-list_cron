@@ -1,0 +1,1 @@
+*/2 * * * * <username> /home/<username>/meshtastic-live-node-list/live-node-list.sh 2>&1 | logger -t live-node-list

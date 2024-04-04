@@ -1,0 +1,58 @@
+</pre>
+
+<p class="footnote">Node Key:
+    <span class="key node-personal">personal</span>,
+    <span class="key node-frequently-contactable">frequently contactable</span>,
+    <span class="key node-rarely-contactable">rarely contactable/distant</span>,
+    <span class="key node-newly-provisioned">pos. newly provisioned</span>,
+    <span class="key node-unknown">unknown name (only ID)</span>
+</p>
+
+<details>
+    <summary>Technical Details (click to reveal)</summary>
+    <p>Data gathering starts every <strong>2 minutes</strong> which takes approximately 10 seconds. It is then uploaded to this page which is automatically refreshed every <strong>15 seconds</strong> for your convenience.</p>
+    <p>This is achieved by running the Meshtastic Python CLI command with the <a href="https://meshtastic.org/docs/software/python/cli/#--nodes"> --nodes</a> flag running on a humble <a href="https://www.raspberrypi.com/products/raspberry-pi-2-model-b/">Raspberry Pi 2 Model B</a> with a <a href="https://pubs.opengroup.org/onlinepubs/9699919799/utilities/crontab.html">cron job</a>.</p>
+</details>
+
+</div>
+
+<script>
+$(document).ready(function() {
+    $('pre').each(function() {
+        /* RegEx operations can be pretty CPU & memory intensive so we define and dump them ASAP */
+        var patternPersonalNodes = new RegExp('(' + nodeListPersonal.join('.*?(?=\\│)|') + '.*?(?=\\│))', 'gi');
+        $(this).html($(this).html().replace(patternPersonalNodes, '<span class="node-personal">$1</span>'));
+        patternPersonalNodes = null;
+
+        var patternFrequentlyContactable = new RegExp('(' + nodeListFrequentlyContactable.join('.*?(?=\\│)|') + '.*?(?=\\│))', 'gi');
+        $(this).html($(this).html().replace(patternFrequentlyContactable, '<span class="node-frequently-contactable">$1</span>'));
+        patternFrequentlyContactable = null;
+
+        var patternRarelyContactable = new RegExp('(' + nodeListRarelyContactable.join('.*?(?=\\│)|') + '.*?(?=\\│))', 'gi');
+        $(this).html($(this).html().replace(patternRarelyContactable, '<span class="node-rarely-contactable">$1</span>'));
+        patternRarelyContactable = null;
+
+        var patternNewlyProvisioned = new RegExp('(' + nodeListNewlyProvisioned + '.*?(?=\\│))', 'gi');
+        $(this).html($(this).html().replace(patternNewlyProvisioned, '<span class="node-newly-provisioned">$1</span>'));
+        patternNewlyProvisioned = null;
+
+        var patternUnknown = new RegExp('(' + nodeListUnknown + '.*?(?=\\│))', 'gi');
+        $(this).html($(this).html().replace(patternUnknown, '<span class="node-unknown">$1</span>'));
+        patternUnknown = null;
+
+
+        var patternHAMCallSign = new RegExp('(' + nodeListHAMCallSign + ')', 'g');
+        $(this).html($(this).html().replace(patternHAMCallSign, '<a target="qrz-com" title="$1 Callsign on qrz.com" href="https://www.qrz.com/db/$1" class="node-ham-call-sign">$1</a>'));
+        patternHAMCallSign = null;
+    });
+});
+</script>
+
+<footer>
+<!--
+    Additional footer HTML code here
+-->
+</footer>
+
+</body>
+</html>

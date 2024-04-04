@@ -1,0 +1,135 @@
+/*
+Live node List CSS
+*/
+
+html {
+    margin: 0;
+    padding: 0;
+    line-height: inherit;
+    background-color: var(--backgroundPrimary);
+    color: var(--textPrimary);
+}
+
+body {
+    margin: 0px;
+}
+
+#root {
+    background-color: var(--backgroundPrimary);
+    padding-left: 2em;
+    padding-right: 2em;
+    font-family: monospace;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+:root {
+    --backgroundPrimary: #ffffff;
+    --backgroundSecondary: #e6e9ed;
+    --textPrimary: #11112D;
+    --textSecondary: #64748b;
+    --link: #0b69bf;
+    --brighnessHover: .95;
+    --brightnessPress: 1.05;
+    --brightnessDisabled: .75
+}
+
+nav>ul {
+    list-style-type: none;
+    padding-inline-start: 0;
+}
+nav>ul::before {
+    content: "[";
+}
+nav>ul::after {
+    content: "]";
+}
+nav>ul li {
+    display: inline;
+}
+nav>ul li::after {
+    content: "|";
+}
+nav>ul li:last-child::after {
+    content: none;
+}
+nav>ul li a {
+    padding: 0.125em 0.25em;
+}
+nav>ul li a.livenodelist {
+    /* background-color: darkseagreen; */
+    font-weight: bold;
+}
+nav>ul li a:hover {
+    background-color: var(--textPrimary);
+    color: var(--backgroundPrimary);
+}
+
+a:link, a:visited {
+    color: var(--textPrimary);
+    text-decoration: none;
+}
+
+p.footnote {
+    font-size: x-small;
+}
+p.footnote .key {
+    padding: 0 0.2em;
+}
+
+pre {
+    white-space: pre;
+    margin: 0;
+    font-family: monospace;
+    font-size: smaller;
+    font-variant-numeric: tabular-nums lining-nums;
+    white-space-collapse: preserve;
+}
+pre > h2 {
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+pre > h2 > .node-personal {
+    background-color: unset;
+}
+
+#node-metainfo {
+    display: block;
+}
+
+#node-name {
+    margin: 0;
+    margin-bottom: 0.25em;
+}
+#node-generated {
+    margin: 0;
+    margin-bottom: 0.1em;
+    font-size: smaller;
+    font-family: monospace;
+}
+
+.node-personal {
+    background-color: lightblue;
+}
+.node-newly-provisioned {
+    background-color: pink;
+}
+.node-unknown {
+    background-color: red;
+    color: white;
+}
+.node-frequently-contactable {
+    background-color: lightgreen;
+}
+.node-rarely-contactable {
+    background-color: gold;
+}
+a.node-ham-call-sign[href^="http"]::after, a.node-ham-call-sign[href^="https://"]::after {
+    width: inherit;
+    height: inherit;
+    margin-left: inherit;
+    background: none;
+    /* display: inline-block; */
+}
+a.node-ham-call-sign {
+    font-weight: bold;
+    text-decoration: underline;
+}

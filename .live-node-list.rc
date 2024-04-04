@@ -1,0 +1,32 @@
+## Required to access web server and place the contents of upload_files
+# REMOTE_USERNAME="example_user"
+# REMOTE_HOST="example.com"
+# REMOTE_PATH="/srv/httpd/htdocs/live-node-list"
+
+## The name(s) of the nodes connected LOCALLY. Recommended to reflect the node's long name
+# NODE_NAME["MainStation"]="Main Station"
+
+## The LOCALly generated plain-text files containing the output of meshtastic --nodes. These will be stored in LOCAL_BASE_PATH
+# LOCAL_NODE_DUMP_FILE["MainStation"]="nodes-MainStation.txt"
+
+## The Serial Com port(s) of your LOCALLY attached nodes
+# LOCAL_SERIAL_PORT["MainStation"]="/dev/ttyUSB0"
+
+## The REMOTE names of the statically generated HTML files
+# REMOTE_HTML_FILE["MainStation"]="nodes-MainStation.html"
+
+
+# *** Advanced Configuration ***
+# ** Only change if nessesary **
+
+## LOCAL base path where you have installed the package, by default it is
+## in the subdirectory of your user's home directory
+LOCAL_BASE_PATH="${HOME}/meshtastic-live-node-list"
+
+## The directory in which files are collected to be uploaded to the web server
+LOCAL_UPLOAD_FILES="${LOCAL_BASE_PATH}/upload_files"
+
+## The directory and HTML template files
+TEMPLATE_HTML_PATH="${LOCAL_BASE_PATH}/template_html"
+TEMPLATE_HTML_HEADER="_header.html"
+TEMPLATE_HTML_FOOTER="_footer.html"

@@ -20,30 +20,42 @@
 $(document).ready(function() {
     $('pre').each(function() {
         /* RegEx operations can be pretty CPU & memory intensive so we define and dump them ASAP */
-        var patternPersonalNodes = new RegExp('(' + nodeListPersonal.join('.*?(?=\\│)|') + '.*?(?=\\│))', 'gi');
-        $(this).html($(this).html().replace(patternPersonalNodes, '<span class="node-personal">$1</span>'));
-        patternPersonalNodes = null;
 
-        var patternFrequentlyContactable = new RegExp('(' + nodeListFrequentlyContactable.join('.*?(?=\\│)|') + '.*?(?=\\│))', 'gi');
-        $(this).html($(this).html().replace(patternFrequentlyContactable, '<span class="node-frequently-contactable">$1</span>'));
-        patternFrequentlyContactable = null;
+        if (Array.isArray(nodeListPersonal) && nodeListPersonal.length !== 0) {
+            var patternPersonalNodes = new RegExp('(' + nodeListPersonal.join('.*?(?=\\│)|') + '.*?(?=\\│))', 'gi');
+            $(this).html($(this).html().replace(patternPersonalNodes, '<span class="node-personal">$1</span>'));
+            patternPersonalNodes = null;
+        }
 
-        var patternRarelyContactable = new RegExp('(' + nodeListRarelyContactable.join('.*?(?=\\│)|') + '.*?(?=\\│))', 'gi');
-        $(this).html($(this).html().replace(patternRarelyContactable, '<span class="node-rarely-contactable">$1</span>'));
-        patternRarelyContactable = null;
+        if (Array.isArray(nodeListFrequentlyContactable) && nodeListFrequentlyContactable.length !== 0) {
+            var patternFrequentlyContactable = new RegExp('(' + nodeListFrequentlyContactable.join('.*?(?=\\│)|') + '.*?(?=\\│))', 'gi');
+            $(this).html($(this).html().replace(patternFrequentlyContactable, '<span class="node-frequently-contactable">$1</span>'));
+            patternFrequentlyContactable = null;
+        }
 
-        var patternNewlyProvisioned = new RegExp('(' + nodeListNewlyProvisioned + '.*?(?=\\│))', 'gi');
-        $(this).html($(this).html().replace(patternNewlyProvisioned, '<span class="node-newly-provisioned">$1</span>'));
-        patternNewlyProvisioned = null;
+        if (Array.isArray(nodeListRarelyContactable) && nodeListRarelyContactable.length !== 0) {
+            var patternRarelyContactable = new RegExp('(' + nodeListRarelyContactable.join('.*?(?=\\│)|') + '.*?(?=\\│))', 'gi');
+            $(this).html($(this).html().replace(patternRarelyContactable, '<span class="node-rarely-contactable">$1</span>'));
+            patternRarelyContactable = null;
+        }
 
-        var patternUnknown = new RegExp('(' + nodeListUnknown + '.*?(?=\\│))', 'gi');
-        $(this).html($(this).html().replace(patternUnknown, '<span class="node-unknown">$1</span>'));
-        patternUnknown = null;
+        if (Array.isArray(nodeListNewlyProvisioned) && nodeListNewlyProvisioned.length !== 0) {
+            var patternNewlyProvisioned = new RegExp('(' + nodeListNewlyProvisioned + '.*?(?=\\│))', 'gi');
+            $(this).html($(this).html().replace(patternNewlyProvisioned, '<span class="node-newly-provisioned">$1</span>'));
+            patternNewlyProvisioned = null;
+        }
 
+        if (Array.isArray(nodeListUnknown) && nodeListUnknown.length !== 0) {
+            var patternUnknown = new RegExp('(' + nodeListUnknown + '.*?(?=\\│))', 'gi');
+            $(this).html($(this).html().replace(patternUnknown, '<span class="node-unknown">$1</span>'));
+            patternUnknown = null;
+        }
 
-        var patternHAMCallSign = new RegExp('(' + nodeListHAMCallSign + ')', 'g');
-        $(this).html($(this).html().replace(patternHAMCallSign, '<a target="qrz-com" title="$1 Callsign on qrz.com" href="https://www.qrz.com/db/$1" class="node-ham-call-sign">$1</a>'));
-        patternHAMCallSign = null;
+        if (Array.isArray(nodeListHAMCallSign) && nodeListHAMCallSign.length !== 0) {
+            var patternHAMCallSign = new RegExp('(' + nodeListHAMCallSign + ')', 'g');
+            $(this).html($(this).html().replace(patternHAMCallSign, '<a target="qrz-com" title="$1 Callsign on qrz.com" href="https://www.qrz.com/db/$1" class="node-ham-call-sign">$1</a>'));
+            patternHAMCallSign = null;
+        }
     });
 });
 </script>

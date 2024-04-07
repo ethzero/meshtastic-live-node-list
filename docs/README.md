@@ -37,6 +37,10 @@ Future goals possibly include using a JSON-fed HTML page, Bluetooth-over-Serial 
 
 Uses the excellent RegExp by <georg@op-co.de> from the package https://github.com/ge0rg/callsign-regex to indentify HAM callsigns.
 
+Portions of this package was written with the help of ChatGPT so I'd like to acknowledge the **original authors** on whom this work is based.
+
+All trademarks are the property of their respective owners.
+
 ## Requirements
 
 This package has been tested with the following:

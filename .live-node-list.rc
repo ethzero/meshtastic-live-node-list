@@ -9,6 +9,10 @@
 ## The LOCALly generated plain-text files containing the output of meshtastic --nodes. These will be stored in LOCAL_BASE_PATH
 # LOCAL_NODE_DUMP_FILE["MainStation"]="nodes-MainStation.txt"
 
+## The IP ADDRESS of your LOCALLY accesible nodes over WiFi
+## NB: If defined, this will take precedence over other connection methods
+# LOCAL_IP_ADDRESS["MainStation"]="192.168.xxx.xxx"
+
 ## The Serial Com port(s) of your LOCALLY attached nodes
 # LOCAL_SERIAL_PORT["MainStation"]="/dev/ttyUSB0"
 

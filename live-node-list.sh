@@ -18,6 +18,22 @@ check_rc_file() {
   fi
 }
 
+get_connection_string() {
+  local node="$1"
+
+  # Check if the key exists in LOCAL_IP_ADDRESS
+  if [[ -v LOCAL_IP_ADDRESS["$node"] ]]; then
+      echo "--host ${LOCAL_IP_ADDRESS["$node"]}"
+  # Check if the key exists in LOCAL_SERIAL_PORT
+  elif [[ -v LOCAL_SERIAL_PORT["$node"] ]]; then
+      echo "--port ${LOCAL_SERIAL_PORT["$node"]}"
+  else
+      echo "No connection method found; ABORTING" | logger -t $LOGGING_ID
+      exit 1
+  fi
+}
+
+
 rc_file=".live-node-list.rc"
 rc_path=$(check_rc_file "$rc_file")
 
@@ -38,7 +54,14 @@ do
   echo "Gathering \"${NODE_NAME[${key}]}\" node list..." | logger -t $LOGGING_ID
 
   # Connect to node and dump the neighbour node list to a file, add node, timestamp, HTML preamble
-  ${HOME}/.local/bin/meshtastic --port ${LOCAL_SERIAL_PORT[${key}]} --nodes | \
+  connection_string=$(get_connection_string ${key})
+  if [ $? -eq 1 ]; then
+      echo "... received a subshell ABORT."
+      exit 1
+  fi
+  echo "Using connection method: ${connection_string}" | logger -t $LOGGING_ID
+
+  ${HOME}/.local/bin/meshtastic $connection_string --nodes | \
     sed "s|Connected to radio|<div id="node-metainfo"><h2 id="node-name">Node: ${NODE_NAME[${key}]}</h2><p id="node-generated">Generated: `date`</p></div><pre>|" \
     > "${LOCAL_UPLOAD_FILES}/${LOCAL_NODE_DUMP_FILE[${key}]}"
 
